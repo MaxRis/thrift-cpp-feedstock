@@ -1,39 +1,49 @@
 package:
   name: thrift-cpp
-  version: "0.9.3"
+  version: "0.10.0"
 
 source:
-  fn: thrift-0.9.3.tar.gz
-  url: http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz
-  md5: 88d667a8ae870d5adeca8cb7d6795442
+  fn: thrift-0.10.0.tar.gz
+  url: http://archive.apache.org/dist/thrift/0.10.0/thrift-0.10.0.tar.gz
+  md5: 795c5dd192e310ffff38cfd9430d6b29
 
 build:
-  skip: true  # [win]
-  number: 5
+  number: 0
+  skip: true  # [win and py27]
+  features:
+    - vc10  # [win and py34]
+    - vc14  # [win and py35]
 
 requirements:
   build:
     - toolchain
     - boost 1.63.*
-    - autoconf
-    - automake
+    - autoconf        # [not win]
+    - automake        # [not win]
     - cmake
-    - libtool
+    - libtool         # [not win]
     - openssl 1.0.*
-    - bison
-    - flex
-    - pkg-config
+    - bison           # [not win]
+    - flex            # [not win]
+    - pkg-config      # [not win]
     - zlib 1.2.*
+    - python          # [win]
+    - 7za             # [win]
 
   run:
     - openssl 1.0.*
     - zlib 1.2.*
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
 
 test:
   commands:
-    - test -f $PREFIX/bin/thrift
-    - test -f $PREFIX/lib/libthrift.a
-    - test -f $PREFIX/include/thrift/Thrift.h
+    - test -f $PREFIX/bin/thrift                                        # [not win]
+    - test -f $PREFIX/lib/libthrift.a                                   # [not win]
+    - test -f $PREFIX/include/thrift/Thrift.h                           # [not win]
+    - if not exist %PREFIX%\\Library\\include\\thrift\\Thrift.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\bin\\thrift.exe exit 1            # [win]
+    - if not exist %PREFIX%\\Library\\lib\\thriftmd.lib exit 1          # [win]
 
 about:
   home: http://thrift.apache.org
