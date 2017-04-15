@@ -6,6 +6,9 @@ source:
   fn: thrift-0.10.0.tar.gz
   url: http://archive.apache.org/dist/thrift/0.10.0/thrift-0.10.0.tar.gz
   md5: 795c5dd192e310ffff38cfd9430d6b29
+  
+  patches:
+    - unix_workaround-for-boost-1.63.0.patch  # [not win]
 
 build:
   number: 0
