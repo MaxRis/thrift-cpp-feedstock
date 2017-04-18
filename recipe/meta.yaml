@@ -9,6 +9,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [win and not py27]
   features:
     - vc9   # [win and py27]
     - vc10  # [win and py34]
@@ -29,6 +30,7 @@ requirements:
     - zlib 1.2.*
     - python          # [win]
     - 7za             # [win]
+    - msinttypes      # [win and py<35]
 
   run:
     - openssl 1.0.*
