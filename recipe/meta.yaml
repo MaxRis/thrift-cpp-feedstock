@@ -9,9 +9,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [win and py27]
+  skip: true  # [win and not py35]
   features:
-    - vc10  # [win and py34]
     - vc14  # [win and py35]
 
 requirements:
@@ -33,8 +32,6 @@ requirements:
   run:
     - openssl 1.0.*
     - zlib 1.2.*
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py>=35]
 
 test:
   commands:
