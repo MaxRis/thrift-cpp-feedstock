@@ -6,6 +6,7 @@ set LIBEVENT_VERSION=2.1.7
 
 curl -SLO https://github.com/lexxmark/winflexbison/releases/download/v.%WIN_FLEX_BIZON_VERSION%/win_flex_bison-%WIN_FLEX_BIZON_VERSION%.zip
 7za x -y win_flex_bison-%WIN_FLEX_BIZON_VERSION%.zip
+if errorlevel 1 exit 1
 
 popd
 
@@ -14,6 +15,7 @@ pushd %SRC_DIR%\thirdparty\src
 
 curl -SLO https://github.com/nmathewson/Libevent/archive/release-%LIBEVENT_VERSION%-rc.zip
 7za x -y release-%LIBEVENT_VERSION%-rc.zip
+if errorlevel 1 exit 1
 
 cd Libevent-release-%LIBEVENT_VERSION%-rc
 nmake -f Makefile.nmake
@@ -23,6 +25,7 @@ move WIN32-Code\event2\* include\event2\
 move WIN32-Code\nmake\* include\event2\
 move WIN32-Code\nmake\event2\* include\event2\
 move *.h include\
+if errorlevel 1 exit 1
 
 popd
 

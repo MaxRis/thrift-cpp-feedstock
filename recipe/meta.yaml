@@ -32,6 +32,7 @@ requirements:
   run:
     - openssl 1.0.*
     - zlib 1.2.*
+    - vc14  # [win and py35]
 
 test:
   commands:
