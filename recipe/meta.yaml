@@ -35,9 +35,11 @@ requirements:
   run:
     - openssl 1.0.*
     - zlib 1.2.*
-    - vc 14  # [win and py35]
 
 test:
+  requires:
+    - python {{ environ['PY_VER'] + '*' }}  # [win]
+
   commands:
     - test -f $PREFIX/bin/thrift                                        # [unix]
     - test -f $PREFIX/lib/libthrift.a                                   # [unix]
